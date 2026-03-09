@@ -2,16 +2,12 @@ import zarr
 import matplotlib.pyplot as plt
 import numpy as np
 
-# -----------------------
 # Load archive
-# -----------------------
 
 z = zarr.open("vit_trace.zarr", mode="r")
 print(z.tree())
 
-# -----------------------
 # Load image
-# -----------------------
 
 img = z["inputs"]["processed_image"][:][0]   # (3,224,224)
 
@@ -25,9 +21,7 @@ plt.title("Input Image")
 plt.axis("off")
 plt.show()
 
-# -----------------------
 # Show ViT patches
-# -----------------------
 
 patch_size = 16
 
@@ -47,9 +41,7 @@ for i in range(14):
 plt.suptitle("ViT Image Patches")
 plt.show()
 
-# -----------------------
 # Load attention
-# -----------------------
 
 print(list(z["attention"].keys()))
 
@@ -79,9 +71,7 @@ plt.suptitle("ViT Attention Across Layers", fontsize=16)
 plt.tight_layout()
 plt.show()
 
-# -----------------------
 # Predicted class
-# -----------------------
 
 pred = z["outputs"].attrs["predicted_class"]
 print("Predicted class index:", pred)
